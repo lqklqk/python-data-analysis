@@ -1072,6 +1072,29 @@ np.transpose(n, axes=(2,0,1))
 ```
 
 ##### 四、ndarray的聚合操作
+- np.min(a[, axis, out, keepdims])--最小值
+
+  * Return the minimum of an array or minimum along an axis.
+
+- np.max(a[, axis, out, keepdims])--最大值
+
+  * Return the maximum of an array or maximum along an axis.
+
+- np.median(a[, axis, out, overWvrite_ input, keepdims])--中值
+
+  * Compute the median along the specified axis.
+
+- np.mean(a[, axis, dtype, out, keepdims])--平均值
+
+  * Compute the arithmetic mean along the specified axis.
+
+- np.std(a[, axis, dtype, out, ddof, keepdims])--标准差
+
+  * Compute the standard deviation along the specified axis.
+
+- np.var(a[, axis, dtype, out, ddof, keepdims])--方差
+
+  * Compute the variance along the specified axis.
 
 ```python
 # 求和np.sum
@@ -1215,6 +1238,12 @@ np.nansum(n)  # 6.0  计算nan以外的元素
 线性代数中常用矩阵操作
 
 - 矩阵与矩阵的乘积
+    - 形状必须满足：(m, n) x (n, l) = (m, l)，即第一个矩阵的列数必须等于第二个矩阵的行数
+    - 矩阵乘法api：
+      - np.matmul()
+      - np.dot()
+      - 如果都是numpy.matrix，也可以直接相乘：data_mat * weights_mat
+      - 如果都是ndarray二维数组，做矩阵乘法，使用@符也可以：data @ weights
 
   ```python
   n1 = np.random.randint(0, 10, size=(2,3))
@@ -1279,6 +1308,13 @@ np.nansum(n)  # 6.0  计算nan以外的元素
   ```
 
 ###### 2. 广播机制
+ - 数组之间的运算需要满足广播机制
+      - 当操作两个数组时，numpy会逐个比较它们的shape (构成的元组tuple)，只有在下述情况下，两个数组才能够进行数组与数组的运算。
+        - 维度相等
+        - shape (其中相对应的一个地方为1)
+      - 数组与数组运算规则
+        - 规则一：为缺失的维度补维度
+        - 规则二：缺失元素用已有值填充
 
 【重要】ndarray广播机制的两条规则
 
