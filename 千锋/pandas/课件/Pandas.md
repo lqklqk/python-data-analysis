@@ -10,7 +10,7 @@
 
 #### 强大的数据处理和分析工具
 
-<img src="./images/pandas1.png" style="zoom:150%;" />
+<img src="images/pandas1.png" style="zoom:150%;" />
 
 ####  一、Pandas课程介绍
 
