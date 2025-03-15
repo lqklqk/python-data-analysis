@@ -1244,6 +1244,12 @@ np.nansum(n)  # 6.0  计算nan以外的元素
       - np.dot()
       - 如果都是numpy.matrix，也可以直接相乘：data_mat * weights_mat
       - 如果都是ndarray二维数组，做矩阵乘法，使用@符也可以：data @ weights
+- 线性代数其他操作
+  - np.linalg.xxx()：线性代数操作相关函数
+  - np.linalg.inv(n)：矩阵逆
+  - np.linalg.matrix_rank(n)：矩阵的秩
+- 其他数学函数
+  - abs、sqrt、square、exp、log、sin、cos、tan、round、ceil、floor、cumsum
 
   ```python
   n1 = np.random.randint(0, 10, size=(2,3))
@@ -1267,18 +1273,32 @@ np.nansum(n)  # 6.0  计算nan以外的元素
   ```
 
 - 线性代数其他操作
+  - 矩阵逆：设A是数域上的一个n阶矩阵，若在相同数域上存在另一个n阶矩阵B，使得： AB=BA=E ，则我们称B是A的逆矩阵，而A则被称为可逆矩阵。注：E为单位矩阵。
+    - 如果一个矩阵的秩等于其行数（或列数），则称该矩阵为满秩矩阵。满秩方阵才可能存在逆矩阵。反之，若矩阵秩小于行数或列数，该矩阵为秩亏矩阵，无法求逆。
+    - r(A) = m 取了所有的行，叫行满秩
+    - r(A) = n 取了所有的列，叫列满秩
+    - r(A) < min{m,n}则叫做降秩
+    - 单位矩阵：例如[[1,0,0],
+                     [0,1,0],
+                     [0,0,1]]
+  - 矩阵的行列式
+    - 行列式计算：矩阵的所有主对角线乘积之和减去所有副对角线乘积之和
+      例如：[[1, 2, 3],
+             [2, 5, 4],
+             [4, 5, 8]]，行列式结果：(1\*5\*8+2\*4\*4+3\*2\*5)-(3\*5\*4+4\*5\*1+8\*2\*2)
+  - 矩阵的秩
 
-  ```python
-  # 线性代数常用
-  n = np.array([[1, 2, 3],
-                [2, 5, 4],
-                [4, 5, 8]]) 
-  np.linalg.inv(n) # 逆矩阵
-  np.linalg.det(n) # 计算矩阵行列式
+    ```python
+    # 线性代数常用
+    n = np.array([[1, 2, 3],
+                  [2, 5, 4],
+                  [4, 5, 8]]) 
+    np.linalg.inv(n) # 逆矩阵
+    np.linalg.det(n) # 计算矩阵行列式
   
-  # 矩阵的秩(满秩矩阵或奇异矩阵)
-  np.linalg.matrix_rank(n)
-  ```
+    # 矩阵的秩(满秩矩阵或奇异矩阵)
+    np.linalg.matrix_rank(n)
+    ```
 
 ###### 其他数学函数
 
@@ -1411,7 +1431,7 @@ np.savez("arr.npz",xarr = x,yarr=y)
 ```
 
 ###### 读取数组
-
+- np.load，用于读取npy、npz文件
 ```python
 # 读取npy文件
 np.load('x_arr.npy') 
@@ -1421,6 +1441,9 @@ np.load('arr.npz')['yarr']
 ```
 
 ###### csv、txt文件的读写操作
+- np.savetxt：将数组保存到文件中，具体参数自行查阅
+- np.loadtxt：读取文件内容
+- np.genfromtxt：读取文件内容，与np.loadtxt类似，功能更丰富，可以处理缺失值等等，性能较差
 
 ```python
 n = np.random.randint(0, 10,size = (3,4))
